@@ -190,14 +190,14 @@ class Predic_Simple_Backup_Admin {
                             foreach ( $files as $file ) {
                                 $file = realpath( $file );
                                 if ( is_dir( $file ) ) {
-                                        $zip->addEmptyDir( str_replace( $directory . '/', '', $file . '/' ) );
+                                  $zip->addEmptyDir( 'webroot/' . str_replace( $directory . '/', '', $file . '/' ) );
                                 } else if (is_file($file)) {
-                                        $zip->addFromString( str_replace($directory . '/', '', $file ), file_get_contents( $file ) );
+                                  $zip->addFromString( 'webroot/' . str_replace($directory . '/', '', $file ), file_get_contents( $file ) );
                                 }
                             }
 
                         } else if ( is_file( $directory ) ) {
-                                $zip->addFromString( basename( $directory ) . '', file_get_contents( $directory ) );
+                          $zip->addFromString( basename( $directory ) . '', file_get_contents( $directory ) );
                         }
 
 						/*
