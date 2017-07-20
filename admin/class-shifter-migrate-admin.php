@@ -52,13 +52,13 @@ class Shifter_Migrate_Admin {
 
            <div class="psb-admin-page-content">
                <p><?php echo esc_html__( 'This plugin creates a packaged archive for uploading to Shifter', 'shifter-migrate' ) ?></p>
-               <p><?php echo esc_html__( 'When You click "Backup now" button, please wait untill the proccess is done. Do not navigate away from the page, as this proccess can take long time depending from Your server', 'shifter-migrate' ) ?></p>
+               <p><?php echo esc_html__( 'When You click "Create Archive" button, please wait untill the proccess is done. Do not navigate away from the page, as this proccess can take long time depending from Your server', 'shifter-migrate' ) ?></p>
            </div>
 
             <div id="psb-admin-page-form">
                 <form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
                     <input type="hidden" name="action" value="start_shifter_migrate">
-                    <input type="submit" value="<?php echo esc_html__( 'Backup now', 'shifter-migrate' ); ?>">
+                    <input class="button" type="submit" value="<?php echo esc_html__( 'Create Archive', 'shifter-migrate' ); ?>">
                 </form>
             </div>
         </div>
@@ -124,7 +124,7 @@ class Shifter_Migrate_Admin {
         }
 
         // Folder to backup and zip name and path
-        $zip_name = strtolower( sanitize_file_name( get_bloginfo( 'name' ) ) . date("Y-m-d-h-i-sa") ) .".zip";
+        $zip_name = strtolower( sanitize_file_name( get_bloginfo( 'name' ) ) . '-' . date("Y-m-d-h-i-sa") ) .".zip";
         $destination = $backup_files_dir . '/' . $zip_name; // Destination dir and filename
         $directory = ABSPATH; // The folder which you archivate
 
