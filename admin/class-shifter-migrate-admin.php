@@ -13,7 +13,7 @@ class Shifter_Migrate_Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-        $this->plugin_public_name = esc_html_x( 'Very Simple Backup', 'plugin public name and admin menu page name', 'shifter-migrate' );
+        $this->plugin_public_name = esc_html_x( 'Shifter Migrate', 'plugin public name and admin menu page name', 'shifter-migrate' );
         $this->plugin_admin_page = $this->plugin_name . '-page';
 
 	}

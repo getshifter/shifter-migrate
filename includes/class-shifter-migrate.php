@@ -142,6 +142,6 @@ class Shifter_Migrate
     {
         $this->load_dependencies();
         $plugin_admin = new Shifter_Migrate_Admin($this->plugin_name, $this->version);
-        $plugin_admin->add_admin_notice(esc_html__('Very simple backup for WordPress requires at least PHP version 5.3.0', 'shifter-migrate'), 'notice-error');
+        $plugin_admin->add_admin_notice(esc_html__('Shifter Migrate requires at least PHP version 5.3.0', 'shifter-migrate'), 'notice-error');
     }
 }
