@@ -5,11 +5,11 @@
  *
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
- * 
+ *
  * @since      1.0.0
  *
- * @package    Predic_Simple_Backup
- * @subpackage Predic_Simple_Backup/includes
+ * @package    Shifter_Migrate
+ * @subpackage Shifter_Migrate/includes
  */
 
 /**
@@ -18,11 +18,11 @@
  * Loads and defines the internationalization files for this plugin
  *
  * @since      1.0.0
- * @package    Predic_Simple_Backup
- * @subpackage Predic_Simple_Backup/includes
- * @author     Aleksandar Predic
+ * @package    Shifter_Migrate
+ * @subpackage Shifter_Migrate/includes
+ * @author     DigitalCube, Co. Ltd.
  */
-class Predic_Simple_Backup_i18n {
+class Shifter_Migrate_i18n {
 
 	/**
 	 * The domain specified for this plugin.

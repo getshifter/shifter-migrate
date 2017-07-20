@@ -1,19 +1,19 @@
 <?php
 
 /**
- * Plugin Name:       Very simple backup for WordPress
- * Plugin URI:
- * Description:       This plugin is for small sites that do not need fancy WP plugins for backup jobs. It zip all files from Your WP directory and add database dump into zip.
- * Version:           1.1.0
- * Author:            Aleksandar Predic
- * Author URI:        http://acapredic.com/
- * License:
+ * Plugin Name:       Shifter Migrate
+ * Plugin URI:				https://getshifter.io
+ * Description:       Simple archive and migrate tool for Shifter
+ * Version:           1.0.0
+ * Author:            Shifter
+ * Author URI:        https://getshifter.io
+ * License:						MIT
  * License URI:
  *
  * Requires at least: 3.9
- * Tested up to: 4.5
+ * Tested up to: 4.8
  *
- * Text Domain:       predic-simple-backup
+ * Text Domain:       shifter-migrate
  * Domain Path:       /languages
  */
 
@@ -26,7 +26,7 @@ if ( ! defined( 'WPINC' ) ) {
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks if any.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-predic-simple-backup.php';
+require plugin_dir_path( __FILE__ ) . 'includes/class-shifter-migrate.php';
 
 /**
  * Begins execution of the plugin.
@@ -37,9 +37,9 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-predic-simple-backup.php';
  *
  * @since    1.0.0
  */
-function run_predic_simple_backup() {
+function run_shifter_migrate() {
 
-    $plugin = new Predic_Simple_Backup();
+    $plugin = new Shifter_Migrate();
 
     if ( version_compare( phpversion(), '5.3.0' ) >= 0 ) {
 
@@ -51,5 +51,5 @@ function run_predic_simple_backup() {
     }
 
 }
-run_predic_simple_backup();
+run_shifter_migrate();
 ?>

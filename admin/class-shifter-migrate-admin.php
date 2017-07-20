@@ -1,6 +1,6 @@
 <?php
 
-class Predic_Simple_Backup_Admin {
+class Shifter_Migrate_Admin {
 
     /**
 	 * Initialize the class and set its properties.
@@ -13,7 +13,7 @@ class Predic_Simple_Backup_Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-        $this->plugin_public_name = esc_html_x( 'Very Simple Backup', 'plugin public name and admin menu page name', 'predic-simple-backup' );
+        $this->plugin_public_name = esc_html_x( 'Very Simple Backup', 'plugin public name and admin menu page name', 'shifter-migrate' );
         $this->plugin_admin_page = $this->plugin_name . '-page';
 
 	}
@@ -25,7 +25,7 @@ class Predic_Simple_Backup_Admin {
 	 */
     public function add_menu_page() {
         add_menu_page(
-            $this->plugin_public_name . esc_html__( 'Options', 'predic-simple-backup' ), //  The text to be displayed in the title tags of the page when the menu is selected
+            $this->plugin_public_name . esc_html__( 'Options', 'shifter-migrate' ), //  The text to be displayed in the title tags of the page when the menu is selected
             $this->plugin_public_name, // The text to be used for the menu
             'manage_options', // The capability required for this menu to be displayed to the user
             $this->plugin_admin_page, //  The slug name to refer to this menu by (should be unique for this menu)
@@ -48,17 +48,17 @@ class Predic_Simple_Backup_Admin {
         ?>
 
         <div class="psb-admin-page wrap">
-            <h1><?php echo sprintf( esc_html__( '%s Settings', 'predic-simple-backup' ), $this->plugin_public_name ); ?></h1>
+            <h1><?php echo sprintf( esc_html__( '%s Settings', 'shifter-migrate' ), $this->plugin_public_name ); ?></h1>
 
            <div class="psb-admin-page-content">
-               <p><?php echo esc_html__( 'This plugin is for small sites that do not need fancy WP plugins for backup jobs. It zip all files from Your WP directory and add database dump into zip.', 'predic-simple-backup' ) ?></p>
-               <p><?php echo esc_html__( 'When You click "Backup now" button, please wait untill the proccess is done. Do not navigate away from the page, as this proccess can take long time depending from Your server', 'predic-simple-backup' ) ?></p>
+               <p><?php echo esc_html__( 'This plugin is for small sites that do not need fancy WP plugins for backup jobs. It zip all files from Your WP directory and add database dump into zip.', 'shifter-migrate' ) ?></p>
+               <p><?php echo esc_html__( 'When You click "Backup now" button, please wait untill the proccess is done. Do not navigate away from the page, as this proccess can take long time depending from Your server', 'shifter-migrate' ) ?></p>
            </div>
 
             <div id="psb-admin-page-form">
                 <form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
-                    <input type="hidden" name="action" value="start_predic_simple_backup">
-                    <input type="submit" value="<?php echo esc_html__( 'Backup now', 'predic-simple-backup' ); ?>">
+                    <input type="hidden" name="action" value="start_shifter_migrate">
+                    <input type="submit" value="<?php echo esc_html__( 'Backup now', 'shifter-migrate' ); ?>">
                 </form>
             </div>
         </div>
@@ -120,7 +120,7 @@ class Predic_Simple_Backup_Admin {
         $backup_files_dir = $this->get_backup_directory();
         if ( ! $backup_files_dir ) {
             // Directory in uploads folder could not be created
-            $this->redirect_to_admin_page( esc_html__( 'Directory to store backup files does not exist', 'predic-simple-backup' ), 'notice-error' );
+            $this->redirect_to_admin_page( esc_html__( 'Directory to store backup files does not exist', 'shifter-migrate' ), 'notice-error' );
         }
 
         // Folder to backup and zip name and path
@@ -134,11 +134,11 @@ class Predic_Simple_Backup_Admin {
         // Start the backup!
         if ( $this->zipData( $directory, $destination ) ) {
 
-            $this->redirect_to_admin_page( esc_html__( 'Backup archive successfully created', 'predic-simple-backup' ), 'notice-success' );
+            $this->redirect_to_admin_page( esc_html__( 'Backup archive successfully created', 'shifter-migrate' ), 'notice-success' );
 
         } else {
 
-            $this->redirect_to_admin_page( esc_html__( 'Something went wrong. Backup archive could not be created', 'predic-simple-backup' ), 'notice-error' );
+            $this->redirect_to_admin_page( esc_html__( 'Something went wrong. Backup archive could not be created', 'shifter-migrate' ), 'notice-error' );
 
         }
 
@@ -220,7 +220,7 @@ class Predic_Simple_Backup_Admin {
 
 										unlink( $database_filename );
 										$zip->close();
-										$this->redirect_to_admin_page( esc_html__( 'Database backup file could not be exported', 'predic-simple-backup' ), 'notice-warning' );
+										$this->redirect_to_admin_page( esc_html__( 'Database backup file could not be exported', 'shifter-migrate' ), 'notice-warning' );
 
 									}
 
@@ -231,7 +231,7 @@ class Predic_Simple_Backup_Admin {
 								} else {
 
 									$zip->close();
-									$this->redirect_to_admin_page( esc_html__( 'Database backup file could not be created', 'predic-simple-backup' ), 'notice-warning' );
+									$this->redirect_to_admin_page( esc_html__( 'Database backup file could not be created', 'shifter-migrate' ), 'notice-warning' );
 								}
 
 							} catch(Exception $e) {
@@ -253,7 +253,7 @@ class Predic_Simple_Backup_Admin {
 							} else {
 								$zip->close();
 								chmod( $destination, 0644 );
-								$this->redirect_to_admin_page( esc_html__( 'Database backup file could not be created', 'predic-simple-backup' ), 'notice-warning' );
+								$this->redirect_to_admin_page( esc_html__( 'Database backup file could not be created', 'shifter-migrate' ), 'notice-warning' );
 							}
 
 						}
@@ -388,7 +388,7 @@ class Predic_Simple_Backup_Admin {
 
         $files = scandir( $backup_dir );
 
-        echo '<h3>' . esc_html__( 'List of backups', 'predic-simple-backup' ) . '</h3>';
+        echo '<h3>' . esc_html__( 'List of backups', 'shifter-migrate' ) . '</h3>';
 
         // Make list of backup files
         echo '<ul>';
@@ -403,8 +403,8 @@ class Predic_Simple_Backup_Admin {
 
             echo '<li>'
                     . $file . ' ' . round( filesize( $filename ) / ( 1024 * 1024 ), 2 ) . ' MB '
-                    . '<a href="' . esc_url( $backup_dir_url . '/' . $file ) . '">' . esc_html__( 'Download', 'predic-simple-backup' ) . '</a> '
-                    . '<a class="ptb-delete-backup" href="' . esc_url( esc_url( admin_url('admin-post.php') ) . '?action=delete_predic_simple_backup&psb_delete_file=' . $file ) . '">' . esc_html__( 'Delete', 'predic-simple-backup' ) . '</a>'
+                    . '<a href="' . esc_url( $backup_dir_url . '/' . $file ) . '">' . esc_html__( 'Download', 'shifter-migrate' ) . '</a> '
+                    . '<a class="ptb-delete-backup" href="' . esc_url( esc_url( admin_url('admin-post.php') ) . '?action=delete_shifter_migrate&psb_delete_file=' . $file ) . '">' . esc_html__( 'Delete', 'shifter-migrate' ) . '</a>'
                 . '</li>';
         }
 
@@ -428,7 +428,7 @@ class Predic_Simple_Backup_Admin {
         $file = isset( $_GET['psb_delete_file'] ) && !empty( $_GET['psb_delete_file'] ) ? sanitize_text_field( $_GET['psb_delete_file'] ) : NULL;
 
         if ( empty( $file ) ) {
-            $this->redirect_to_admin_page( esc_html__( 'Please select file to delete', 'predic-simple-backup' ), 'notice-warning' );
+            $this->redirect_to_admin_page( esc_html__( 'Please select file to delete', 'shifter-migrate' ), 'notice-warning' );
         }
 
         $backup_dir = $this->get_backup_directory();
@@ -440,7 +440,7 @@ class Predic_Simple_Backup_Admin {
             unlink( $filename );
 
             // redirect to plugin page
-            $this->redirect_to_admin_page( esc_html__( 'File successfully deleted', 'predic-simple-backup' ), 'notice-success' );
+            $this->redirect_to_admin_page( esc_html__( 'File successfully deleted', 'shifter-migrate' ), 'notice-success' );
         }
 
     }
