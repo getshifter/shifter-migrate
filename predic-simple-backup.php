@@ -2,17 +2,17 @@
 
 /**
  * Plugin Name:       Very simple backup for WordPress
- * Plugin URI:        
+ * Plugin URI:
  * Description:       This plugin is for small sites that do not need fancy WP plugins for backup jobs. It zip all files from Your WP directory and add database dump into zip.
  * Version:           1.1.0
  * Author:            Aleksandar Predic
  * Author URI:        http://acapredic.com/
- * License:           
- * License URI:       
- * 
+ * License:
+ * License URI:
+ *
  * Requires at least: 3.9
  * Tested up to: 4.5
- * 
+ *
  * Text Domain:       predic-simple-backup
  * Domain Path:       /languages
  */
@@ -38,13 +38,13 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-predic-simple-backup.php';
  * @since    1.0.0
  */
 function run_predic_simple_backup() {
-    
+
     $plugin = new Predic_Simple_Backup();
-    
+
     if ( version_compare( phpversion(), '5.3.0' ) >= 0 ) {
-        
+
         $plugin->run();
-        
+
     } else {
 
         $plugin->abort();
