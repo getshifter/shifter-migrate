@@ -51,7 +51,7 @@ class Shifter_Migrate_Admin {
             <h1><?php echo sprintf( esc_html__( '%s Settings', 'shifter-migrate' ), $this->plugin_public_name ); ?></h1>
 
            <div class="psb-admin-page-content">
-               <p><?php echo esc_html__( 'This plugin is for small sites that do not need fancy WP plugins for backup jobs. It zip all files from Your WP directory and add database dump into zip.', 'shifter-migrate' ) ?></p>
+               <p><?php echo esc_html__( 'This plugin creates a packaged archive for uploading to Shifter', 'shifter-migrate' ) ?></p>
                <p><?php echo esc_html__( 'When You click "Backup now" button, please wait untill the proccess is done. Do not navigate away from the page, as this proccess can take long time depending from Your server', 'shifter-migrate' ) ?></p>
            </div>
 
@@ -388,7 +388,7 @@ class Shifter_Migrate_Admin {
 
         $files = scandir( $backup_dir );
 
-        echo '<h3>' . esc_html__( 'List of backups', 'shifter-migrate' ) . '</h3>';
+        echo '<h3>' . esc_html__( 'Available Archives', 'shifter-migrate' ) . '</h3>';
 
         // Make list of backup files
         echo '<ul>';
@@ -401,11 +401,15 @@ class Shifter_Migrate_Admin {
 
             $filename = $backup_dir . '/' . $file;
 
-            echo '<li>'
-                    . $file . ' ' . round( filesize( $filename ) / ( 1024 * 1024 ), 2 ) . ' MB '
-                    . '<a href="' . esc_url( $backup_dir_url . '/' . $file ) . '">' . esc_html__( 'Download', 'shifter-migrate' ) . '</a> '
-                    . '<a class="ptb-delete-backup" href="' . esc_url( esc_url( admin_url('admin-post.php') ) . '?action=delete_shifter_migrate&psb_delete_file=' . $file ) . '">' . esc_html__( 'Delete', 'shifter-migrate' ) . '</a>'
-                . '</li>';
+            // Get File Extension
+            $extension = pathinfo($file, PATHINFO_EXTENSION);
+            if ($extension == 'zip') {
+              echo '<li>'
+                      . $file . ' ' . round( filesize( $filename ) / ( 1024 * 1024 ), 2 ) . ' MB '
+                      . '<a class="button" href="' . esc_url( $backup_dir_url . '/' . $file ) . '">' . esc_html__( 'Download', 'shifter-migrate' ) . '</a> '
+                      . '<a class="button" href="' . esc_url( esc_url( admin_url('admin-post.php') ) . '?action=delete_shifter_migrate&psb_delete_file=' . $file ) . '">' . esc_html__( 'Delete', 'shifter-migrate' ) . '</a>'
+                  . '</li>';
+            }
         }
 
         echo '</ul>';
