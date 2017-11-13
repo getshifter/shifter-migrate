@@ -8,9 +8,9 @@ Simple migrate and archive tool for migrating to [Shifter](https://getshifter.io
 4. Download new archive and upload to your account at [go.getshifter.io](https://go.getshifter.io/)
 
 # Compatibility issue with Shifter V2
-Due to Shifter's update, this plugin doesn't work propparly with Shifter V2 environment. 
+Due to Shifter's update, this plugin doesn't work properly with Shifter V2 environment. 
 
-For migrating to Shifter, please check following document.
+For migrating to Shifter, please check following documents:
 * [Migrating WordPress Content to Shifter with the WordPress Importer Plugin](http://support.getshifter.io/user-guide/migrating-wordpress-content-to-shifter-with-the-wordpress-importer-plugin)
 * [Migrating to Shifter using the All-in-One WP Migration WordPress Plugin](http://support.getshifter.io/user-guide/migrating-to-shifter-using-the-all-in-one-wp-migration-wordpress-plugin)
 
